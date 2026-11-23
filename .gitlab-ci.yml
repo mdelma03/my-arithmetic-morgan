@@ -7,5 +7,5 @@ unit-tests:
   before_script:
     - pip install --no-cache-dir hatch
   script:
-    - hatch test
+    - hatch test --cover
   coverage: '/(?i)total.*? (100(?:.0+)?%|[1-9]?\d(?:.\d+)?%)$/'
