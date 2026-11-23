@@ -1,0 +1,10 @@
+
+stages:
+  - test
+
+unit-tests:
+  stage: test
+  before_script:
+    - pip install --no-cache-dir hatch
+  script:
+    - hatch test
