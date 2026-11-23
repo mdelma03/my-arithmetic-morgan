@@ -8,3 +8,4 @@ unit-tests:
     - pip install --no-cache-dir hatch
   script:
     - hatch test
+  coverage: '/TOTAL.*\s+(\d+%)$/'
