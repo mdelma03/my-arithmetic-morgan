@@ -8,4 +8,4 @@ unit-tests:
     - pip install --no-cache-dir hatch
   script:
     - hatch test
-  coverage: '/TOTAL.*\s+(\d+%)$/'
+  coverage: '/(?i)total.*? (100(?:.0+)?%|[1-9]?\d(?:.\d+)?%)$/'
