@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", , "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -32,7 +32,7 @@ Issues = "https://github.com/U.N. Owen/my-arithmetic-morgan/issues"
 Source = "https://github.com/U.N. Owen/my-arithmetic-morgan"
 
 [tool.hatch.version]
-path = "src/my_arithmetic_morgan/__about__.py"
+source = "vcs"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
@@ -59,3 +59,6 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/my_arithmetic_morgan/_version.py"
