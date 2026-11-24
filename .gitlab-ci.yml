@@ -25,6 +25,7 @@ build-package:
       - dist/
   rules:
     - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == "develop"
 
 deploy-stable:
   stage: deploy
@@ -33,3 +34,11 @@ deploy-stable:
     - ls -la dist/
   rules:
     - if: $CI_COMMIT_TAG
+
+deploy-unstable:
+  stage: deploy
+  script:
+    - echo "my-arithmetic-morgan deployment on unstable servers"
+    - ls -la dist/
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
