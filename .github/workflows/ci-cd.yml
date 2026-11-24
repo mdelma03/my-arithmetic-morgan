@@ -1,0 +1,75 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurer Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer Hatch
+        run: pip install --no-cache-dir hatch
+
+      - name: Exécuter les tests unitaires
+        run: hatch test --cover
+
+  deploy-stable:
+    needs: unit-tests
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code et l'historique des tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurer Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer Hatch et construire le paquet
+        run: |
+          pip install --no-cache-dir hatch
+          hatch build
+
+      - name: Simuler le déploiement stable
+        run: |
+          echo "my-arithmetic-morgan deployment on stable servers"
+          ls -la dist/
+
+  deploy-unstable:
+    needs: unit-tests
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code et l'historique Git
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurer Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer Hatch et construire le paquet
+        run: |
+          pip install --no-cache-dir hatch
+          hatch build
+
+      - name: Simuler le déploiement instable
+        run: |
+          echo "my-arithmetic-morgan deployment on unstable servers"
+          ls -la dist/
