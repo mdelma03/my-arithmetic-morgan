@@ -1,1 +1,7 @@
+# Artefacts de build générés par hatch build
+dist/
+build/
+*.egg-info/
+
+# Fichier de version généré automatiquement par hatch-vcs (si vous avez activé le hook)
 src/my_arithmetic_morgan/_version.py
