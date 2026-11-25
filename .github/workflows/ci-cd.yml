@@ -22,7 +22,9 @@ jobs:
         run: pip install --no-cache-dir hatch
 
       - name: Exécuter les tests unitaires
-        run: hatch test --cover
+        run: |
+          hatch test --cover
+          hatch run hatch-test:coverage lcov -o coverage.lcov
 
       - name: Envoyer la couverture vers Coveralls
         uses: coverallsapp/github-action@v2
