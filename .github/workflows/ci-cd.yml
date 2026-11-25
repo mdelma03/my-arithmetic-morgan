@@ -24,7 +24,7 @@ jobs:
       - name: Exécuter les tests unitaires
         run: |
           hatch test --cover
-          hatch run hatch-test:coverage lcov -o coverage.lcov
+          hatch run hatch-test.py3.12:coverage lcov -o coverage.lcov
 
       - name: Envoyer la couverture vers Coveralls
         uses: coverallsapp/github-action@v2
