@@ -62,3 +62,12 @@ exclude_lines = [
 
 [tool.hatch.build.hooks.vcs]
 version-file = "src/my_arithmetic_morgan/_version.py"
+
+[tool.hatch.envs.docs]
+dependencies = [
+  "sphinx",
+  "furo",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "sphinx-build -b html docs docs/_build/html"
