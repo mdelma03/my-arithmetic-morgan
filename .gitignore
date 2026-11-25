@@ -7,3 +7,8 @@ build/
 src/my_arithmetic_morgan/_version.py
 
 docs/_build/
+
+# Bytecode Python
+__pycache__/
+*.py[cod]
+*$py.class
